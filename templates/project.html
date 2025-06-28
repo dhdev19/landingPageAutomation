@@ -973,34 +973,58 @@
 
 
     <script>
+  // Function to show privacy policy only
   function showPrivacyPolicy() {
-    // Hide all content sections except header/footer
+    // Hide all main sections
     document.querySelectorAll('section, .main-slider, .call-action').forEach(el => {
       el.style.display = 'none';
     });
 
-    // Show privacy policy
+    // Show only privacy policy section
     document.getElementById('privacy-policy-content').style.display = 'block';
 
-    // Optional: scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Optional: handle URL hash like #privacy
+  // Function to restore all sections when navigating back
+  function restoreMainContent() {
+    // Show all main content again
+    document.querySelectorAll('section, .main-slider, .call-action').forEach(el => {
+      el.style.display = '';
+    });
+
+    // Hide privacy policy section
+    const privacy = document.getElementById('privacy-policy-content');
+    if (privacy) privacy.style.display = 'none';
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    // If hash is #privacy, show privacy
     if (window.location.hash === '#privacy') {
       showPrivacyPolicy();
     }
 
-    // Attach click to all .privacy-link anchors
+    // Attach handler for Privacy Policy links
     document.querySelectorAll('.privacy-link').forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
         showPrivacyPolicy();
+        history.pushState(null, '', '#privacy');
       });
+    });
+
+    // Attach handler to all navigation links (anchors that scroll to sections)
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href !== '#privacy') {
+        link.addEventListener('click', function () {
+          restoreMainContent(); // restore normal content
+        });
+      }
     });
   });
 </script>
+
 
 
 
