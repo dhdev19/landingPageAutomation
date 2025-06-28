@@ -157,10 +157,10 @@ def download_zip():
         # Add other templates except project.html
         for folder, _, files in os.walk('templates'):
             for file in files:
-                if file == 'project.html':
+                if file == 'project.html' or file == 'form.html':
                     continue
                 filepath = os.path.join(folder, file)
-                zf.write(filepath, arcname=filepath)
+                zf.write(filepath, arcname=file)
         # Add static/css
         for folder, _, files in os.walk(os.path.join('static', 'css')):
             for file in files:
