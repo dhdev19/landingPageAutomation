@@ -55,6 +55,19 @@
       href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
       rel="stylesheet"
     />
+<style>
+.middle-bg {
+  background: url("{{ url_for('static', filename=project.middle_bg) if project.middle_bg else url_for('static', filename='images/middle-bg.webp') }}");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 70px 0;
+  text-align: center;
+}
+</style>
+
+
   </head>
   <body>
     <header class="wrap-header" id="myHeader">
