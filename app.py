@@ -135,6 +135,7 @@ def index():
             'callback': save_file('callback', default='images/call-back.png'),
             'sitevisit': save_file('sitevisit', default='images/sitevisit.png'),
             'priceimg': save_file('priceimg', default='images/price.png'),
+            'middle_bg': save_file('middle_bg', default='images/middle-bg.webp'),
         }
         # Add zipped pairs for QR codes and RERA numbers
         project['rera_qr_pairs'] = list(zip(project['reraNumbers'], project['qr']))
