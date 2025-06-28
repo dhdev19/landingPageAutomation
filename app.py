@@ -179,4 +179,4 @@ def download_zip():
     return send_file(mem_zip, mimetype='application/zip', as_attachment=True, download_name='project_bundle.zip')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
