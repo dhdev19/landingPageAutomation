@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename=project.favicon) if project.favicon else url_for('static', filename='images/favicon.webp') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename=project.favicon) if project.favicon else url_for('static', filename='images/favicon.webp') }}"
+      type="image/x-icon"
+    />
+    <title>{{ project.title }}</title>
+    <meta name="description" content="{{ project.description }}" />
+    <meta
+      name="keywords"
+      content="{{ project.keywords|join(', ') }}"
+    />
+
+    <!-- local CSS -->
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/owl.carousel.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/owl.theme.default.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- external CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="wrap-header" id="myHeader">
+      <div class="main-menu">
+        <div class="container">
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button
+                  type="button"
+                  class="navbar-toggle collapsed"
+                  data-toggle="collapse"
+                  data-target="#bs-example-navbar-collapse-1"
+                  aria-expanded="false"
+                >
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a href="{{ project.home_url }}" class="navbar-brand">
+                  <img
+                    src="{{ url_for('static', filename=project.logo) if project.logo else url_for('static', filename='images/logo.webp') }}"
+                    alt="logo"
+                    width="200"
+                    height="49"
+                    class="img-responsive"
+                  />
+                </a>
+              </div>
+              <div
+                class="collapse navbar-collapse"
+                id="bs-example-navbar-collapse-1"
+              >
+                <ul class="nav navbar-nav pull-right">
+                  <li><a href="#overview">Overview</a></li>
+                  <li><a href="#amenities">Amenities</a></li>
+                  <li><a href="#gallery">Gallery</a></li>
+                  <li><a href="#floor-plan">Floor Plans</a></li>
+                  <li><a href="#location">Location</a></li>
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal"
+                      >Contact</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-toggle="modal"
+                      data-target="#brochureModal"
+                      class="bdr-r"
+                    >
+                      <i
+                        class="fa fa-download animated slideInDown infinite"
+                        aria-hidden="true"
+                      ></i>
+                      Brochure
+                    </a>
+                  </li>
+                  <li class="btn">
+                    <a href="tel:{{ project.phone }}">+91-{{ project.phone }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <a
+            href="#"
+            data-toggle="modal"
+            data-target="#brochureModal"
+            class="mobile-view"
+          >
+            <i
+              class="fa fa-download animated slideInDown infinite"
+              aria-hidden="true"
+            ></i>
+            Brochure
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-slider">
+      <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          {% for img in project.sliders %}
+          <div class="item{% if loop.first %} active{% endif %}">
+            <img src="{{ url_for('static', filename=img) }}"
+                 class="img-responsive" alt="slide {{ loop.index }}">
+          </div>
+          {% endfor %}
+        </div>
+        <a
+          class="left carousel-control"
+          href="#myCarousel2"
+          role="button"
+          data-slide="prev"
+        >
+          <img
+            src="/static/uploads/left-arrow.svg"
+            alt="prev"
+            width="150"
+            height="150"
+            class="left-arrow"
+          />
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="right carousel-control"
+          href="#myCarousel2"
+          role="button"
+          data-slide="next"
+        >
+          <img
+            src="/static/uploads/right-arrow.svg"
+            alt="next"
+            width="150"
+            height="150"
+            class="right-arrow"
+          />
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <div class="form-content">
+        <h1>{{ project.FormHeading }}</h1>
+        <p>{{ project.FormSubHeading }}</p>
+        <h4>
+          <i class="fa fa-map-marker"></i> {{ project.location }}
+        </h4>
+        <h6>{{ project.offers }}</h6>
+
+        <form method="post" id="enquire-form">
+          <h6>Enquire Now</h6>
+          <div class="col-lg-12">
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              placeholder="Enter Full Name"
+              required
+            />
+          </div>
+          <div class="col-lg-12">
+            <input
+              type="text"
+              name="phone"
+              class="form-control"
+              placeholder="Enter Phone"
+              required
+            />
+          </div>
+          <div class="col-lg-12">
+            <input
+              type="submit"
+              class="btn"
+              name="contactbut"
+              value="Submit"
+            />
+          </div>
+          <div class="col-lg-12">
+            <label>
+              <input type="checkbox" checked /> By submitting I accept
+              <a href="privacy-policy.html">Privacy Policy.</a>
+            </label>
+          </div>
+        </form>
+
+        <h5>RERA No : {{ project.reraNumbers|join(', ') }}</h5>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <section id="overview" class="container-fluid about">
+      <div class="container">
+        <h2>{{ project.aboutHeading }}</h2>
+        <div class="devider"></div>
+        <div class="row">
+          <div class="col-lg-6">
+            <p>{{ project.aboutContent }}</p>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename=project.about_imgs[0]) }}"
+              class="img-responsive"
+              alt="About"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connectivity Highlights -->
+    <section class="container-fluid connectivity-highlights">
+      <div class="container">
+        <h2>Connectivity Highlights</h2>
+        <div class="devider"></div>
+        <h6>{{ project.connectivityHighlightsHeading }}</h6>
+        <table class="table" border="1">
+          <tbody>
+            {% for h in project.connectivityHighlights %}
+            <tr>
+              <td>{{ h.left }}</td>
+              <td>{{ h.right }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Why Choose -->
+    <section class="container-fluid about">
+      <div class="container">
+        <h2>{{ project.aboutHeading }}</h2>
+        <div class="devider"></div>
+        <div class="row">
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename=project.about_imgs[1]) }}"
+              class="img-responsive"
+              alt="Why Choose"
+            />
+          </div>
+          <div class="col-lg-6">
+            <ul>
+              {% for f in project.whyChoose.features %}
+              <li>{{ f }}</li>
+              {% endfor %}
+            </ul>
+            <p>{{ project.whyChoose.text }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enquire Now CTA -->
+    <section class="call-action">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <img
+              src="{{ url_for('static', filename=project.mobile) }}"
+              class="img-responsive"
+              alt="Mobile"
+            />
+          </div>
+          <div class="col-lg-7">
+            <h5>{{ project.enquireNowHeading }}</h5>
+            <a href="#" data-toggle="modal" data-target="#exampleModal"
+              >Enquire Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities -->
+    <section id="amenities" class="container-fluid our_aminities_section">
+      <div class="container">
+        <h2>Amenities</h2>
+        <div class="devider"></div>
+        <h6>{{ project.amenitiesHeading }}</h6>
+        <div class="row">
+          {% for a in project.amenities['list'] %}
+          <div class="col-lg-3 col-sm-4 col-xs-12">
+            <div class="our_aminities_box">
+              <p>{{ a }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Highlights -->
+    <section class="container-fluid about">
+      <div class="container">
+        <h2>Project Highlights</h2>
+        <div class="devider"></div>
+        <div class="row">
+          <div class="col-lg-6">
+            <ul>
+              {% for item in project.highlights['items'] %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            <p>{{ project.highlights.text }}</p>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename=project.about_imgs[2]) }}"
+              class="img-responsive"
+              alt="Highlights"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="container-fluid our_project_gallery_section">
+      <div class="container">
+        <h2>Gallery</h2>
+        <div class="devider"></div>
+        <h6>{{ project.galleryHeading }}</h6>
+        <div class="owl-carousel owl-theme">
+          {% for img in project.gallery %}
+          <div class="item">
+            <img
+              src="{{ url_for('static', filename=img) }}"
+              class="img-responsive"
+              alt="Gallery {{ loop.index }}"
+            />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Price Plan -->
+    <section class="container-fluid configuration">
+      <div class="container">
+        <h2>Price Plan</h2>
+        <div class="devider"></div>
+        <h6>{{ project.pricePlanHeading }}</h6>
+        <table class="table table-striped" border="1">
+          <thead>
+            <tr>
+              <th>Configuration</th>
+              <th>RERA Carpet Area (sq.ft.)</th>
+              <th>Agreement Value in Cr.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for p in project.pricePlan.plans %}
+            <tr>
+              <td>{{ p.config }}</td>
+              <td>{{ p.area }}</td>
+              <td>{{ p.price }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-info"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Price Breakup
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="cost-sheet">
+          <img
+            src="{{ url_for('static', filename=project.costing) }}"
+            class="img-responsive"
+            alt="Costing"
+          />
+          <h3>Complete Costing Details</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Virtual Tour -->
+    <section class="middle-bg">
+      <div class="container">
+        <h3>{{ project.tourTitle }}</h3>
+        <p>{{ project.tourSubTitle }}</p>
+        <a href="#" data-toggle="modal" data-target="#pickupModal">
+          Schedule A Site Visit Virtual Tour
+        </a>
+      </div>
+    </section>
+
+    <!-- Video -->
+    <section class="walkthrough">
+      <div class="container">
+        <h2>Video</h2>
+        <div class="devider"></div>
+        <h6>{{ projectHighlightsTitle }}</h6>
+        <img
+          src="{{ url_for('static', filename=project.walkthrough) }}"
+          class="img-responsive"
+          style="width:100%"
+          alt="Virtual Tour Video"
+        />
+      </div>
+    </section>
+
+    <!-- Floor Plan -->
+    <section id="floor-plan" class="container-fluid flour_plans_section">
+      <div class="container">
+        <h2>Floor Plan</h2>
+        <div class="devider"></div>
+        <h6>{{ project.floorPlanText }}</h6>
+        <div class="row">
+          {% for img in project.floorplans %}
+          <div class="col-lg-4 col-sm-12">
+            <img
+              src="{{ url_for('static', filename=img) }}"
+              class="img-responsive"
+              alt="Floor Plan {{ loop.index }}"
+            />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Brochure CTA -->
+    <section class="middle-bg">
+      <div class="container">
+        <h3>
+          Receive a digital copy of our brochure and learn more about our
+          spacious residences.
+        </h3>
+        <p>Request A Private Visit To Our Site Office / Sales Office</p>
+        <a href="#" data-toggle="modal" data-target="#brochureModal">
+          DOWNLOAD BROCHURE
+        </a>
+      </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="container-fluid location_advantage_section">
+      <div class="container">
+        <h2>Location</h2>
+        <div class="devider"></div>
+        <h6>{{ project.locationSite }}</h6>
+        <div class="row">
+          {% for cat in project.locationSection.categories %}
+          <div class="col-lg-3">
+            <h4>{{ cat.name }}</h4>
+            <ul>
+              {% for it in cat['items'] %}
+              <li>{{ it }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+        <img
+          src="{{ url_for('static', filename=project.map) }}"
+          class="img-responsive"
+          alt="Map"
+        />
+      </div>
+    </section>
+
+    <!-- About Developers -->
+    <section class="container-fluid developer_section">
+      <div class="container">
+        <h2>About Developers</h2>
+        <div class="devider"></div>
+        <p>{{ project.aboutDeveloperParagraph }}</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="container-fluid footer">
+      <div class="container">
+        <p>
+          <strong>Disclaimer</strong>: The content on this website is for
+          information purposes only and does not constitute an offer to avail
+          of any service. The Website Belong To {{ project.ownerName }}.
+          Authorised Channel Partner Of {{ project.projectName }}. MahaRera
+          Number ({{ project.mahaReraNumber }}). Prices mentioned are subject
+          to change without notice and properties mentioned are subject to
+          availability. Images are for representation purposes only. This is
+          the official website of authorized marketing partner. We may also
+          send updates to the mobile number/email id registered with us.
+        </p>
+        <p>
+          Project MahaRera No : {{ project.mahareraNumbers|join(', ') }} and is
+          available on the website
+          <a href="{{ project.mahareraWebsite }}" target="_blank"
+            >{{ project.mahareraWebsite }}</a
+          >
+          under registered projects.
+        </p>
+        <p><a href="privacy-policy.html">Privacy Policy</a></p>
+
+        <div class="QRwrap">
+          {% for rera, qrfile in project.rera_qr_pairs %}
+            <div>
+              <img src="{{ url_for('static', filename=qrfile) }}" class="img-responsive QrCode" alt="RERA QR {{ loop.index }}">
+              <br/>{{ rera }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </footer>
+
+    <!-- Sticky Buttons -->
+    <div class="sticky_whatsapp">
+      <a
+        href="https://api.whatsapp.com/send?phone=+91{{ project.phone }}&amp;text=I%20am%20inquiring%20for%20{{ project.title|urlencode }}"
+        target="_blank"
+      >
+        <img
+          src="/static/uploads/whatsapp.webp"
+          alt="WhatsApp"
+          class="img-responsive"
+        />
+        <span>Whatsapp</span>
+      </a>
+    </div>
+    <div class="sticky-contact">
+      <a href="tel:{{ project.phone }}">
+        <img
+          src="/static/uploads/phone.webp"
+          alt="Call"
+          class="img-responsive"
+        />
+        <span>Call</span>
+      </a>
+    </div>
+
+    <!-- Modals (exampleModal, pickupModal, brochureModal) -->
+    <!-- … your page content above … -->
+
+    <!-- Enquire Now Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Enquire Now</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            ><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-9">
+                <img
+                  src="{{ url_for('static', filename=project.logo) }}"
+                  class="img-responsive"
+                  alt="Logo"
+                  width="200"
+                  height="49"
+                />
+                <h3>Register Here And Avail The <span>Best Offers!</span></h3>
+                <form method="post">
+                  <div class="col-lg-12">
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Enter Full Name"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-12">
+                    <input
+                      type="text"
+                      name="phone"
+                      class="form-control"
+                      placeholder="Enter Phone"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-12">
+                    <input
+                      type="submit"
+                      class="btn"
+                      value="Submit"
+                    />
+                  </div>
+                  <div class="col-lg-12 text-left">
+                    <input type="checkbox" checked />
+                    <span class="term-condition"
+                      >By submitting I accept
+                      <a href="privacy-policy.html">Privacy Policy.</a>
+                    </span>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-3">
+                <div class="popup-form-right">
+                  <img
+                    src="{{ url_for('static', filename=project.callback) }}"
+                    class="img-responsive"
+                    alt="Instant Call Back"
+                    width="60"
+                    height="60"
+                  />
+                  <h5>Instant Call Back</h5>
+                </div>
+                <div class="popup-form-right">
+                  <img
+                    src="{{ url_for('static', filename=project.sitevisit) }}"
+                    class="img-responsive"
+                    alt="Free Site Visit"
+                    width="60"
+                    height="60"
+                  />
+                  <h5>Free Site Visit</h5>
+                </div>
+                <div class="popup-form-right">
+                  <img
+                    src="{{ url_for('static', filename=project.priceimg) }}"
+                    class="img-responsive"
+                    alt="Unmatched Price"
+                    width="60"
+                    height="60"
+                  />
+                  <h5>Unmatched Price​</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pickup (Site Visit) Modal -->
+    <div
+      class="modal fade"
+      id="pickupModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="pickupModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="pickupModalLabel">
+              Schedule Site Visit - Free Pickup & Drop
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            ><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="row">
+                <div class="col-lg-9">
+                  <img
+                    src="{{ url_for('static', filename=project.logo) }}"
+                    class="img-responsive"
+                    alt="Logo"
+                    width="200"
+                    height="49"
+                  />
+                  <h3>Register Here And Avail The <span>Best Offers!</span></h3>
+                  <div class="col-lg-12">
+                    <input
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Enter Full Name"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-12">
+                    <input
+                      type="text"
+                      name="phone"
+                      class="form-control"
+                      placeholder="Enter Phone"
+                      required
+                    />
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="ui calendar" id="example1">
+                      <div class="ui input left icon" style="width:100%">
+                        <i class="calendar icon"></i>
+                        <input
+                          type="text"
+                          name="date"
+                          class="form-control"
+                          placeholder="Select Pick up Date and Time"
+                          autocomplete="off"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <input
+                      type="submit"
+                      class="btn"
+                      value="Schedule"
+                    />
+                  </div>
+                  <div class="col-lg-12 text-left">
+                    <input type="checkbox" checked />
+                    <span class="term-condition"
+                      >By submitting I accept
+                      <a href="privacy-policy.html">Privacy Policy.</a>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="popup-form-right">
+                    <img
+                      src="{{ url_for('static', filename=project.callback) }}"
+                      class="img-responsive"
+                      alt="Instant Call Back"
+                      width="60"
+                      height="60"
+                    />
+                    <h5>Instant Call Back</h5>
+                  </div>
+                  <div class="popup-form-right">
+                    <img
+                      src="{{ url_for('static', filename=project.sitevisit) }}"
+                      class="img-responsive"
+                      alt="Free Site Visit"
+                      width="60"
+                      height="60"
+                    />
+                    <h5>Free Site Visit</h5>
+                  </div>
+                  <div class="popup-form-right">
+                    <img
+                      src="{{ url_for('static', filename=project.priceimg) }}"
+                      class="img-responsive"
+                      alt="Unmatched Price"
+                      width="60"
+                      height="60"
+                    />
+                    <h5>Unmatched Price​</h5>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brochure Download Modal -->
+    <div
+      class="modal fade"
+      id="brochureModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Download Brochure
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            ><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="col-lg-12">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  placeholder="Enter Full Name"
+                  required
+                />
+              </div>
+              <div class="col-lg-12">
+                <input
+                  type="text"
+                  name="phone"
+                  class="form-control"
+                  placeholder="Enter Phone"
+                  required
+                />
+              </div>
+              <div class="col-lg-12">
+                <input
+                  type="submit"
+                  class="btn"
+                  value="Download now"
+                />
+              </div>
+              <div class="col-lg-12">
+                <input type="checkbox" checked />
+                <span class="term-condition"
+                  >By submitting I accept
+                  <a href="privacy-policy.html">Privacy Policy.</a>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- local JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+    <!-- external JS -->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script
+      src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"
+    ></script>
+
+    <!-- your other page scripts… -->
+
+
+    <!-- local JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+    <!-- external JS -->
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script
+      src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"
+    ></script>
+
+    <!-- page scripts -->
+    <script>
+      $(document).ready(function () {
+        $("#myCarousel2").carousel();
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          margin: 10,
+          responsiveClass: true,
+          responsive: {
+            0: { items: 1, nav: true },
+            600: { items: 2, nav: false },
+            1000: { items: 3, nav: true, loop: false }
+          }
+        });
+        $("#exampleModal").modal("show");
+      });
+
+      window.onscroll = function () {
+        var header = document.getElementById("myHeader");
+        if (window.pageYOffset > header.offsetTop) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      };
+
+      $('a[href^="#"]').click(function (e) {
+        e.preventDefault();
+        var target = $(this.hash);
+        $("html, body").animate({ scrollTop: target.offset().top }, 500);
+      });
+    </script>
+  </body>
+</html>
