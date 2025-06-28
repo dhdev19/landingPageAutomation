@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Project Data</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; }
+    label { display: block; margin-top: 1rem; }
+    input[type="text"], textarea { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+    button { margin-top: 2rem; padding: 0.75rem 1.5rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Project Data Entry</h1>
+  <form method="post" enctype="multipart/form-data">
+    <label>
+      Page Title (project.title):
+      <input type="text" name="title" required>
+    </label>
+
+    <label>
+      Meta Description (project.description):
+      <textarea name="description" rows="2"></textarea>
+    </label>
+
+    <label>
+      Keywords (comma-separated → project.keywords):
+      <input type="text" name="keywords" placeholder="e.g. luxury, apartments, Mumbai">
+    </label>
+
+    <label>
+      Home URL (project.home_url):
+      <input type="text" name="home_url">
+    </label>
+
+    <label>
+      Phone Number (project.phone):
+      <input type="text" name="phone" placeholder="e.g. 9769325232">
+    </label>
+
+    <label>
+      Form Heading (project.FormHeading):
+      <input type="text" name="form_heading">
+    </label>
+
+    <label>
+      Form Sub-Heading (project.FormSubHeading):
+      <input type="text" name="form_subheading">
+    </label>
+
+    <label>
+      Location Text (project.location):
+      <input type="text" name="location">
+    </label>
+
+    <label>
+      Offers Text (project.offers):
+      <input type="text" name="offers">
+    </label>
+
+    <label>
+      RERA Numbers (comma-separated → project.reraNumbers):
+      <input type="text" name="rera_numbers" placeholder="e.g. P51700048333,P51700048334">
+    </label>
+
+    <label>
+      About Heading (project.aboutHeading):
+      <input type="text" name="about_heading">
+    </label>
+
+    <label>
+      About Content (project.aboutContent):
+      <textarea name="about_content" rows="3"></textarea>
+    </label>
+
+    <label>
+      Connectivity Highlights Heading (project.connectivityHighlightsHeading):
+      <input type="text" name="conn_highlights_heading">
+    </label>
+
+    <label>
+      Connectivity Highlights (Left:Right comma-separated → project.connectivityHighlights):
+      <input type="text" name="conn_highlights" placeholder="School:2km,Hospital:1km">
+    </label>
+
+    <label>
+      Why Choose Features (comma-separated → project.whyChoose.features):
+      <input type="text" name="why_features" placeholder="Feature A,Feature B,Feature C">
+    </label>
+
+    <label>
+      Why Choose Text (project.whyChoose.text):
+      <textarea name="why_text" rows="2"></textarea>
+    </label>
+
+    <label>
+      Enquire Now Heading (project.enquireNowHeading):
+      <input type="text" name="enquire_heading">
+    </label>
+
+    <label>
+      Amenities List (comma-separated → project.amenities.list):
+      <input type="text" name="amenities_list" placeholder="Gym,Pool,Parking">
+    </label>
+
+    <label>
+      Project Highlights Items (comma-separated → project.highlights.items):
+      <input type="text" name="highlights_items" placeholder="Highlight1,Highlight2">
+    </label>
+
+    <label>
+      Project Highlights Text (project.highlights.text):
+      <textarea name="highlights_text" rows="2"></textarea>
+    </label>
+
+    <label>
+      Gallery Heading (project.galleryHeading):
+      <input type="text" name="gallery_heading">
+    </label>
+
+    <label>
+      Price Plan Heading (project.pricePlanHeading):
+      <input type="text" name="priceplan_heading">
+    </label>
+
+    <label>
+      Price Plans (Config|Area|Price comma-separated → project.pricePlan.plans):
+      <input type="text" name="price_plans" placeholder="2BHK|900|0.75,3BHK|1200|1.00">
+    </label>
+
+    <label>
+      Virtual Tour Title (project.tourTitle):
+      <input type="text" name="tour_title">
+    </label>
+
+    <label>
+      Virtual Tour Sub-Title (project.tourSubTitle):
+      <input type="text" name="tour_subtitle">
+    </label>
+
+    <label>
+      Video Section Heading (projectHighlightsTitle):
+      <input type="text" name="video_heading">
+    </label>
+
+    <label>
+      Floor Plan Text (project.floorPlanText):
+      <input type="text" name="floorplan_text">
+    </label>
+
+    <label>
+      Location Section Heading (project.locationSite):
+      <input type="text" name="location_heading">
+    </label>
+
+    <label>
+      Location Categories (Cat:ItemA;ItemB comma-separated → project.locationSection.categories):
+      <input type="text" name="loc_categories" placeholder="School:2km;3km|Mall:1km;2km">
+    </label>
+
+    <label>
+      Developer Heading (project.aboutDeveloperHeading):
+      <input type="text" name="dev_heading">
+    </label>
+
+    <label>
+      Developer Paragraph (project.aboutDeveloperParagraph):
+      <textarea name="dev_paragraph" rows="2"></textarea>
+    </label>
+
+    <label>
+      Owner Name (project.ownerName):
+      <input type="text" name="owner_name">
+    </label>
+
+    <label>
+      Project Name (project.projectName):
+      <input type="text" name="project_name">
+    </label>
+
+    <label>
+      MahaRera Number (project.mahaReraNumber):
+      <input type="text" name="maha_rera_number">
+    </label>
+
+    <label>
+      All MahaRera Numbers (comma-separated → project.mahareraNumbers):
+      <input type="text" name="maharera_numbers" placeholder="P51700048333,P51700048334">
+    </label>
+
+    <label>
+      MahaRera Website (project.mahareraWebsite):
+      <input type="text" name="maharera_website" placeholder="https://maharera.mahaonline.gov.in">
+    </label>
+
+    <label>
+      Favicon (favicon.webp):
+      <input type="file" name="favicon" accept="image/*">
+    </label>
+    <label>
+      Logo (logo.webp):
+      <input type="file" name="logo" accept="image/*">
+    </label>
+    <label>
+      Navbar Logo (logo-2.png):
+      <input type="file" name="logo2" accept="image/*">
+    </label>
+    <label>
+      Main Slider Images (any number):
+      <input type="file" name="sliders" accept="image/*" multiple>
+    </label>
+    <label>
+      About Images (any number):
+      <input type="file" name="about_imgs" accept="image/*" multiple>
+    </label>
+    <label>
+      Mobile Image (mobile.webp):
+      <input type="file" name="mobile" accept="image/*">
+    </label>
+    <label>
+      Gallery Images (gallery-1.webp ... gallery-7.webp):
+      <input type="file" name="gallery" accept="image/*" multiple>
+    </label>
+    <label>
+      Cost Sheet Image (costing.jpeg):
+      <input type="file" name="costing" accept="image/*">
+    </label>
+    <label>
+      Walkthrough Image (walkthrough.jpg):
+      <input type="file" name="walkthrough" accept="image/*">
+    </label>
+    <label>
+      Floor Plan Images (floor-plan-1.webp ... floor-plan-3.webp):
+      <input type="file" name="floorplans" accept="image/*" multiple>
+    </label>
+    <label>
+      Map Image (map.webp):
+      <input type="file" name="map" accept="image/*">
+    </label>
+    <label>
+      QR Code Images (any number):
+      <input type="file" name="qr" accept="image/*" multiple>
+    </label>
+    
+    <label>
+      Call-back Image (call-back.png):
+      <input type="file" name="callback" accept="image/*">
+    </label>
+    <label>
+      Site Visit Image (sitevisit.png):
+      <input type="file" name="sitevisit" accept="image/*">
+    </label>
+    <label>
+      Price Image (price.png):
+      <input type="file" name="priceimg" accept="image/*">
+    </label>
+
+    <button type="submit">Render Project Page</button>
+  </form>
+  <form method="post" action="/download-zip" style="display:inline;">
+    <button type="submit" style="margin-left:1rem;">Download Project as ZIP</button>
+  </form>
+</body>
+</html>
