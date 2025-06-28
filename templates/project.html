@@ -864,60 +864,55 @@
       </div>
     </div>
 
-    <!-- local JS -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
-
-    <!-- external JS -->
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script
-      src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"
-    ></script>
-
-    <!-- your other page scripts… -->
+    
 
 
-    <!-- local JS -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+    <!-- ✅ jQuery FIRST -->
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
-    <!-- external JS -->
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script
-      src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"
-    ></script>
+<!-- ✅ THEN Bootstrap -->
+<script src="/static/js/bootstrap.min.js"></script>
 
-    <!-- page scripts -->
-    <script>
-      $(document).ready(function () {
-        $("#myCarousel2").carousel();
-        $(".owl-carousel").owlCarousel({
-          loop: true,
-          margin: 10,
-          responsiveClass: true,
-          responsive: {
-            0: { items: 1, nav: true },
-            600: { items: 2, nav: false },
-            1000: { items: 3, nav: true, loop: false }
-          }
-        });
-        $("#exampleModal").modal("show");
-      });
+<!-- ✅ THEN Owl Carousel -->
+<script src="/static/js/owl.carousel.js"></script>
 
-      window.onscroll = function () {
-        var header = document.getElementById("myHeader");
-        if (window.pageYOffset > header.offsetTop) {
-          header.classList.add("sticky");
-        } else {
-          header.classList.remove("sticky");
-        }
-      };
+<!-- ✅ Optional: Semantic UI (depends on jQuery too, so after jQuery is fine) -->
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 
-      $('a[href^="#"]').click(function (e) {
-        e.preventDefault();
-        var target = $(this.hash);
-        $("html, body").animate({ scrollTop: target.offset().top }, 500);
-      });
-    </script>
+<!-- ✅ Your custom scripts LAST -->
+<script>
+  $(document).ready(function () {
+    $("#myCarousel2").carousel();
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 10,
+      responsiveClass: true,
+      responsive: {
+        0: { items: 1, nav: true },
+        600: { items: 2, nav: false },
+        1000: { items: 3, nav: true, loop: false }
+      }
+    });
+
+    // Optional popup trigger
+    $("#exampleModal").modal("show");
+  });
+
+  window.onscroll = function () {
+    var header = document.getElementById("myHeader");
+    if (window.pageYOffset > header.offsetTop) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  };
+
+  $('a[href^="#"]').click(function (e) {
+    e.preventDefault();
+    var target = $(this.hash);
+    $("html, body").animate({ scrollTop: target.offset().top }, 500);
+  });
+</script>
+
   </body>
 </html>
