@@ -58,7 +58,7 @@ def index():
             'home_url':             request.form.get('home_url'),
             'phone':                request.form.get('phone'),
             'email':                request.form.get('email'),
-            'projectName':          request.form.get('form_heading'),
+            'FormHeading':          request.form.get('form_heading'),
             'FormSubHeading':       request.form.get('form_subheading'),
             'location':             request.form.get('location'),
             'offers':               request.form.get('offers'),
