@@ -66,7 +66,7 @@ def index():
             # 'aboutHeading':         request.form.get('about_heading'),
             'aboutContent':         request.form.get('about_content'),
             # 'connectivityHighlightsHeading':
-                                     request.form.get('conn_highlights_heading'),
+                                     # request.form.get('conn_highlights_heading'),
             # for simplicity assume highlights entered as "Left1:Right1,Left2:Right2,…"
             'connectivityHighlights': [
                 {'left': pair.split(':',1)[0].strip(), 'right': pair.split(':',1)[1].strip()}
