@@ -57,14 +57,15 @@ def index():
             'keywords':             comma_list(request.form.get('keywords', '')),
             'home_url':             request.form.get('home_url'),
             'phone':                request.form.get('phone'),
-            'FormHeading':          request.form.get('form_heading'),
+            'email':                request.form.get('email'),
+            'projectName':          request.form.get('form_heading'),
             'FormSubHeading':       request.form.get('form_subheading'),
             'location':             request.form.get('location'),
             'offers':               request.form.get('offers'),
             'reraNumbers':          comma_list(request.form.get('rera_numbers', '')),
-            'aboutHeading':         request.form.get('about_heading'),
+            # 'aboutHeading':         request.form.get('about_heading'),
             'aboutContent':         request.form.get('about_content'),
-            'connectivityHighlightsHeading':
+            # 'connectivityHighlightsHeading':
                                      request.form.get('conn_highlights_heading'),
             # for simplicity assume highlights entered as "Left1:Right1,Left2:Right2,…"
             'connectivityHighlights': [
@@ -84,8 +85,8 @@ def index():
                 'items': comma_list(request.form.get('highlights_items', '')),
                 'text':  request.form.get('highlights_text')
             },
-            'galleryHeading':       request.form.get('gallery_heading'),
-            'pricePlanHeading':     request.form.get('priceplan_heading'),
+            # 'galleryHeading':       request.form.get('gallery_heading'),
+            # 'pricePlanHeading':     request.form.get('priceplan_heading'),
             # similarly, price plans as "Config|Area|Price,Config2|…"
             'pricePlan': {
                 'plans': [
@@ -98,7 +99,7 @@ def index():
             },
             'tourTitle':            request.form.get('tour_title'),
             'tourSubTitle':         request.form.get('tour_subtitle'),
-            'projectHighlightsTitle': request.form.get('video_heading'),
+            # 'projectHighlightsTitle': request.form.get('video_heading'),
             'floorPlanText':        request.form.get('floorplan_text'),
             'locationSite':         request.form.get('location_heading'),
             # locationSection as "Category1:ItemA;ItemB|Category2:…"
