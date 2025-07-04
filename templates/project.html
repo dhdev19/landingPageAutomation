@@ -244,7 +244,7 @@
     <!-- Overview -->
     <section id="overview" class="container-fluid about">
       <div class="container">
-        <h2>{{ project.aboutHeading }}</h2>
+        <h2>About {{ project.FormHeading }}</h2>
         <div class="devider"></div>
         <div class="row">
           <div class="col-lg-6">
@@ -266,7 +266,7 @@
       <div class="container">
         <h2>Connectivity Highlights</h2>
         <div class="devider"></div>
-        <h6>{{ project.connectivityHighlightsHeading }}</h6>
+        <h6>{{ project.FormHeading }} Connectivity Highlights</h6>
         <table class="table" border="1">
           <tbody>
             {% for h in project.connectivityHighlights %}
@@ -283,7 +283,7 @@
     <!-- Why Choose -->
     <section class="container-fluid about">
       <div class="container">
-        <h2>{{ project.aboutHeading }}</h2>
+        <h2>Why Choose {{ project.FormHeading }}?</h2>
         <div class="devider"></div>
         <div class="row">
           <div class="col-lg-6">
@@ -331,7 +331,7 @@
       <div class="container">
         <h2>Amenities</h2>
         <div class="devider"></div>
-        <h6>{{ project.amenitiesHeading }}</h6>
+        <h6>{{ project.FormHeading }} Amenities</h6>
         <div class="row">
           {% for a in project.amenities['list'] %}
           <div class="col-lg-3 col-sm-4 col-xs-12">
@@ -374,7 +374,7 @@
       <div class="container">
         <h2>Gallery</h2>
         <div class="devider"></div>
-        <h6>{{ project.galleryHeading }}</h6>
+        <h6>{{ project.FormHeading }} Gallery</h6>
         <div class="owl-carousel owl-theme">
           {% for img in project.gallery %}
           <div class="item">
@@ -394,7 +394,7 @@
       <div class="container">
         <h2>Price Plan</h2>
         <div class="devider"></div>
-        <h6>{{ project.pricePlanHeading }}</h6>
+        <h6>{{ project.FormHeading }} Price Plan</h6>
         <table class="table table-striped" border="1">
           <thead>
             <tr>
@@ -450,7 +450,7 @@
       <div class="container">
         <h2>Video</h2>
         <div class="devider"></div>
-        <h6>{{ projectHighlightsTitle }}</h6>
+        <h6>{{ project.FormHeading }}</h6>
         <img
           src="{{ url_for('static', filename=project.walkthrough) }}"
           class="img-responsive"
@@ -465,7 +465,7 @@
       <div class="container">
         <h2>Floor Plan</h2>
         <div class="devider"></div>
-        <h6>{{ project.floorPlanText }}</h6>
+        <h6>{{ project.FormHeading }} Floor Plan</h6>
         <div class="row">
           {% for img in project.floorplans %}
           <div class="col-lg-4 col-sm-12">
@@ -499,7 +499,7 @@
       <div class="container">
         <h2>Location</h2>
         <div class="devider"></div>
-        <h6>{{ project.locationSite }}</h6>
+        <h6>{{ project.FormHeading }} Location Site</h6>
         <div class="row">
           {% for cat in project.locationSection.categories %}
           <div class="col-lg-3">
@@ -562,7 +562,7 @@
         <h3>Commitment to Data Security</h3>
         <p>Your personally identifiable information is kept secure. Only authorized employees, agents and contractors (who have agreed to keep information secure and confidential) have access to this information. All emails and newsletters from this site allow you to opt out of further mailings.</p>
         <h3>Privacy Contact Information</h3>
-        <p>Privacy Contact Information<br><a href="mailto:info@dostigreaterthanemumbai.com">info@dostigreaterthanemumbai.com</a></p>
+        <p>Privacy Contact Information<br><a href="mailto:{{ project.email }}">{{ project.email }}</a></p>
         <div class="clearfix"></div>
       </div>
     </div>
